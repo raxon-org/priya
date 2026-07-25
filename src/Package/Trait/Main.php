@@ -567,7 +567,6 @@ trait Main {
                                         if($patch !== null) {
                                             File::delete($file->target);
                                         }
-                                        breakpoint($file->target);
                                         File::write($file->target, $content);
                                         File::permission($object, [
                                             'target' => $file->target,
@@ -580,6 +579,7 @@ trait Main {
                         if($patch !== null) {
                             File::delete($file->target);
                         }
+                        breakpoint($file->target);
                         echo Cli::info('Processing file:') . $file->target . PHP_EOL;
                         File::copy($file->url, $file->target);
                         File::permission($object, [
