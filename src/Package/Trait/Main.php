@@ -567,6 +567,7 @@ trait Main {
                                         if($patch !== null) {
                                             File::delete($file->target);
                                         }
+                                        breakpoint($file->target);
                                         File::write($file->target, $content);
                                         File::permission($object, [
                                             'target' => $file->target,
