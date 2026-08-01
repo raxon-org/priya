@@ -265,7 +265,6 @@ _('prototype').addClass = function(className){
                     this.classList.add(name);
                 } else {
                     this.debug('error in classlist with ' + this.classname + ' ' + name);
-                    console.log(this);
                 }
             }
         }
@@ -585,7 +584,6 @@ priya.naturalCompare = _('prototype').naturalCompare;
  * Content.prototype.js
  */
 _('prototype').content = function (data){
-    console.log(data);
     if(Object.prototype.toString.call(priya) !== '[object Function]'){
         var priya = window.priya;
     }
@@ -650,8 +648,9 @@ _('prototype').content = function (data){
             }
         }
         else {
-            console.warn(target);
             console.warn('no target or unknown method (' + method + ') in content');
+            console.warn('Target: ' );
+            console.warn(target);
         }
         return target;
     } else {
@@ -689,7 +688,7 @@ _('prototype').content = function (data){
                 else if(method === 'before' || method === 'beforebegin'){
                     node.insertAdjacentHTML('beforebegin', data['html']);
                 } else {
-                    console.log('unknown method (' + method + ') in content');
+                    console.warns('unknown method (' + method + ') in content');
                 }
             }
         } else {
@@ -723,7 +722,7 @@ _('prototype').content = function (data){
             else if(method === 'before' || method === 'beforebegin'){
                 target.insertAdjacentHTML('beforebegin', data['html']);
             } else {
-                console.log('unknown method (' + method + ') in content');
+                console.warn('unknown method (' + method + ') in content');
             }
         }
         return target;
@@ -736,10 +735,7 @@ priya.content = _('prototype').content;
  * Cookie.prototype.js
  */
 _('prototype').cookie = function (attribute, value){
-    console.log(attribute);
-    console.log(value);
-    const cookie = document.cookie;
-    console.log(cookie);
+    console.log('Deprecated, too little (only 4KB) use localStorage and Encryption');
 }
 
 priya.cookie = _('prototype').cookie;
@@ -749,10 +745,12 @@ priya.cookie = _('prototype').cookie;
  */
 _('prototype').create = function (type, create){
     if(typeof type.toLowerCase != 'function'){
-        console.log('no function toLowerCase______________________________________________');
-        console.log(type);
-        console.log(create);
-        console.log(_('prototype').create.caller);
+        console.warn('no function toLowerCase');
+        console.warn('Type: ');
+        console.warn(type);
+        console.warn('Create:');
+        console.warn(create);
+        console.warn(_('prototype').create.caller);
         return;
     }
     switch(type.toLowerCase()){
@@ -816,7 +814,7 @@ _('prototype').create = function (type, create){
                   fragment.childNodes.item = false;
               }
               else if (typeof create != 'undefined'){
-                  console.log('unknown type (' + typeof create + ') in priya.create()');
+                  console.warn('unknown type (' + typeof create + ') in priya.create()');
               }
               return fragment.childNodes;
         break;
@@ -1154,17 +1152,7 @@ _('prototype').data = function (attribute, value){
             }
             var data = this.attribute('data-' + attribute, value);
             if(this.is_empty(data) && data !== '0' &&  data !== '' && !this.is_empty(attribute)){
-                data = this.data();
                 var collection = {};
-                /*
-                for(key in data){
-                    console.log(key);
-                    console.log(attribute);
-                    if(this.stristr(key, attribute) !== false){
-                        collection[this.str_replace(attribute + '-', '', key)] = data[key];
-                    }
-                }
-                 */
                 if(this.is_empty(collection)){
                     return null;
                 } else {
@@ -1944,7 +1932,6 @@ _('prototype').dump = function () {
     for (i = 1; i < arguments.length; i++) {
       output += '\n' + _formatArray(arguments[i], 0, padVal, padChar)
     }
-    console.log(output)
     // Not how PHP does it, but helps us test:
     return output
   }
@@ -1954,7 +1941,7 @@ _('prototype').dump = function () {
  * Exception.prototype.js
  */
 _('prototype').exception = function (data, except){
-    console.log(data);
+    console.warn(data);
     if(
         !is.empty(data.class) &&
         (
@@ -1969,17 +1956,17 @@ _('prototype').exception = function (data, except){
             ])
         )
     ){
-        console.log('exception triggered');
+        console.warn('exception triggered');
         this.debug(JSON.stringify(data, null, 2));
     }
     if(
         !is.empty(data.class) &&
         _('_').stristr(data.class, 'locateException') !== false
     ){
-        console.log('exception triggered');
+        console.warn('exception triggered');
         this.debug(JSON.stringify(data, null, 2));
         if(data?.code === 1){
-            console.log('debug location information added...');
+            console.warn('debug location information added...');
         }
     }
 }
@@ -2065,7 +2052,8 @@ priya.explode = _('prototype').explode;
  * Extended.prototype.js
  */
 priya.init = function (data, configuration){
-    console.log('deprecated, use select or run');
+    console.warn('deprecated, use select or run');
+    /*
     if(typeof data == 'undefined'){
         return this;
     }
@@ -2074,6 +2062,7 @@ priya.init = function (data, configuration){
         return element;
     }
     return data;
+     */
 }
 
 /**
@@ -2085,7 +2074,8 @@ _('prototype').find = function(selector, attach) {
         var removeId = true;
     }
     if(typeof selector == 'object'){
-        console.log(selector);
+        console.warn('Selector is an object, wrong!');
+        console.warn(selector);
     }
     selector = '#' + this.id + ' ' + selector;
     var list = document.querySelectorAll(selector);
@@ -2559,7 +2549,7 @@ _('prototype').link = function (data, closure){
                 closure();
             }, false);
             data.addEventListener('error', function(event){
-                console.log('error');
+                console.warn('Link load error');
                 closure();
             }, false);
         }
@@ -2882,10 +2872,10 @@ priya.off = _('prototype').off;
  */
 _('prototype').on = function (event, action, capture){
     if(typeof this['Priya'] == 'undefined'){
-        console.log('Priya undefined');
-        console.log(this);
-        console.log(event);
-        console.log(action);
+        console.warn('Priya undefined');
+        console.warn(this);
+        console.warn(event);
+        console.warn(action);
         return this;
     }
     if(typeof this['Priya']['eventListener'] != 'object'){
@@ -2912,7 +2902,7 @@ _('prototype').on = function (event, action, capture){
             for (index=0; index < this.length; index++){
                 var node = this[index];
                 if(typeof action == 'undefined'){
-                    console.log('action undefined with event: ' + event);
+                    console.warn('action undefined with event: ' + event);
                 }
                 node.addEventListener(event, action, capture);
             }
@@ -3231,7 +3221,6 @@ _('prototype').request = function (url, data, script){
         if (typeof JSON.decycle == "function") {
             data = JSON.decycle(data);
         }
-        console.log(data);
         const send = JSON.stringify(data);
         xhttp.send(send);
     }
@@ -3531,7 +3520,7 @@ _('prototype').select = function(selector){
         if(typeof object['Priya'] == 'object'){
             return object;
         } else {
-            console.log('error, cannot attach ??? with priya.attach(object)');
+            console.warn('error, cannot attach ??? with priya.attach(object)');
         }
     }
     else if(call === '[object String]'){
@@ -3568,12 +3557,8 @@ _('prototype').select = function(selector){
         else if(typeof selector['Priya'] == 'object'){
             return selector;
         } else {
-            console.log(object);
-            console.log(selector);
-            console.log(call);
-            console.log('error, cannot attach ??? with priya.attach(object)');
+            console.warn('error, cannot attach ??? with priya.attach(object)');
             var object =  object.attach(call);
-            console.log(object);
             return object;
         }
     }
@@ -3804,8 +3789,7 @@ _('prototype').trigger = function (trigger, bubble, cancel){
                 node.dispatchEvent(event, true);
             }
         } else {
-            console.log('dispatch problem');
-            console.log(this);
+            console.warn('dispatch problem');
         }
     } else {
         this.dispatchEvent(event, true);
