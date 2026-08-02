@@ -438,9 +438,8 @@ trait Main {
             $priya_version !== null
         ){
             $data->set('priya.version.current', $priya_version);
+            $data->write($url);
         }
-        ddd($data);
-        // install priya javascript in main.json in workspace in admin frontend so we can have new versions of it...
         $command = 'app install raxon/account -patch';
         Core::execute($object, $command, $output, $notification);
         if($output){
