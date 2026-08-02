@@ -413,7 +413,7 @@ trait Main {
             $object->config('dictionary.main') .
             $object->config('extension.json')
         ;
-        $dir_version = $object->config('project.dir.vendor') . 'raxon/priya/src/Admin/Public/Js/Priya/';
+        $dir_version = $object->config('project.dir.vendor') . 'raxon/priya/src/Admin/Public/Javascript/Priya/';
         $dir = new Dir();
         $read = $dir->read($dir_version, false);
         foreach($read as $nr => $file){
