@@ -404,6 +404,10 @@ trait Main {
         ]);
         $this->install_backend($response_backend, $response_frontend, $options);
         $this->install_frontend($response_backend, $response_frontend, $options);
+
+        ddd($response_frontend);
+
+
         // install priya javascript in main.json in workspace in admin frontend so we can have new versions of it...
         $command = 'app install raxon/account -patch';
         Core::execute($object, $command, $output, $notification);
