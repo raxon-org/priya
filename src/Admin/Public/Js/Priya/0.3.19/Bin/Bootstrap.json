@@ -25,12 +25,12 @@
                 "redirect": "redirect"
             }
         },
-        "version": "0.3.18"
+        "version": "0.3.19"
     },
     "require": {
         "file": [
-            "Core-0.3.18.js"
+            "Core-0.3.19.js"
         ]
     },
-    "query": "0.3.16"
+    "query": "0.3.19"
 }
