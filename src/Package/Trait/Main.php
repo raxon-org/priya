@@ -407,7 +407,16 @@ trait Main {
 
         $url = $object->config('project.dir.domain') . $response_frontend['node']->name . $object->config('ds') . $object->config('dictionary.data') . $object->config('ds') . $object->config('dictionary.main') . $object->config('extension.json');
 
+        $dir_version = $object->config('project.dir.vendor') . 'raxon/priya/src/Admin/Public/Js/Priya/';
+        $dir = new Dir();
+        $read = $dir->read($dir_version, false);
+        ddd($read);
+
+
+        //need priya version
         $data = $object->data_read($url);
+
+
 
         ddd($data);
 
@@ -423,6 +432,9 @@ trait Main {
         }
     }
 
+    /**
+     * @throws Exception
+     */
     private function install_frontend($response_backend, $response_frontend, $options): void
     {
         $object = $this->object();
@@ -462,6 +474,7 @@ trait Main {
      * @throws ObjectException
      * @throws TemplateException
      * @throws FileWriteException
+     * @throws Exception
      */
     private function install_backend($response_backend, $response_frontend, $options): void
     {
