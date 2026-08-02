@@ -426,12 +426,12 @@ trait Main {
             $priya_version = $read[0]->name ?? null;
         }
         $data = $object->data_read($url);
-        $priya_version_old = $data->get('priya.version') ?? null;
+        $priya_version_old = $data->get('priya.version.from') ?? null;
         if(
             $data !== false &&
             $priya_version !== null
         ){
-            $data->set('priya.version', $priya_version);
+            $data->set('priya.version.current', $priya_version);
         }
         ddd($data);
         // install priya javascript in main.json in workspace in admin frontend so we can have new versions of it...
