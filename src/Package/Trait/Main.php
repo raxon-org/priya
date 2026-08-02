@@ -405,22 +405,35 @@ trait Main {
         $this->install_backend($response_backend, $response_frontend, $options);
         $this->install_frontend($response_backend, $response_frontend, $options);
 
-        $url = $object->config('project.dir.domain') . $response_frontend['node']->name . $object->config('ds') . $object->config('dictionary.data') . $object->config('ds') . $object->config('dictionary.main') . $object->config('extension.json');
-
+        $url = $object->config('project.dir.domain') .
+            $response_frontend['node']->name .
+            $object->config('ds') .
+            $object->config('dictionary.data') .
+            $object->config('ds') .
+            $object->config('dictionary.main') .
+            $object->config('extension.json')
+        ;
         $dir_version = $object->config('project.dir.vendor') . 'raxon/priya/src/Admin/Public/Js/Priya/';
         $dir = new Dir();
         $read = $dir->read($dir_version, false);
-        ddd($read);
-
-
-        //need priya version
+        $priya_version = null;
+        if(
+            array_key_exists(0, $read) &&
+            is_object($read[0]) &&
+            property_exists($read[0], 'type') &&
+            $read[0]->type === Dir::TYPE
+        ){
+            $priya_version = $read[0]->name ?? null;
+        }
         $data = $object->data_read($url);
-
-
-
+        $priya_version_old = $data->get('priya.version') ?? null;
+        if(
+            $data !== false &&
+            $priya_version !== null
+        ){
+            $data->set('priya.version', $priya_version);
+        }
         ddd($data);
-
-
         // install priya javascript in main.json in workspace in admin frontend so we can have new versions of it...
         $command = 'app install raxon/account -patch';
         Core::execute($object, $command, $output, $notification);
