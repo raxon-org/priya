@@ -416,7 +416,13 @@ trait Main {
         $dir_version = $object->config('project.dir.vendor') . 'raxon/priya/src/Admin/Public/Js/Priya/';
         $dir = new Dir();
         $read = $dir->read($dir_version, false);
+        foreach($read as $nr => $file){
+            if($file->type === File::TYPE){
+                unset($read[$nr]);
+            }
+        }
         $priya_version = null;
+        $read_sort = rsort($read, SORT_NATURAL);
         if(
             array_key_exists(0, $read) &&
             is_object($read[0]) &&
@@ -426,11 +432,13 @@ trait Main {
             $priya_version = $read[0]->name ?? null;
         }
         $data = $object->data_read($url);
+        ddd($data);
         $priya_version_old = $data->get('priya.version.from') ?? null;
         if(
             $data !== false &&
             $priya_version !== null
         ){
+            ddd($data);
             $data->set('priya.version.current', $priya_version);
         }
         ddd($data);
