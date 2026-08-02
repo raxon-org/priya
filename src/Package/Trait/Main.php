@@ -407,7 +407,9 @@ trait Main {
 
         $url = $object->config('project.dir.domain') . $response_frontend['node']->name . $object->config('ds') . $object->config('dictionary.data') . $object->config('ds') . $object->config('dictionary.main') . $object->config('extension.json');
 
-        ddd($url);
+        $data = $object->data_read($url);
+
+        ddd($data);
 
 
         // install priya javascript in main.json in workspace in admin frontend so we can have new versions of it...
