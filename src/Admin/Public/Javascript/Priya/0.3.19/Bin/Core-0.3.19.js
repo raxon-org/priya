@@ -3023,6 +3023,8 @@ priya.remove = _('prototype').remove;
  */
 _('prototype').request = function (url, data, script){
     const request = this;
+    console.log(url);
+    console.log(data);
     let type = 'GET';
     if(typeof url == 'object' && url !== null){
         data = url;
