@@ -393,16 +393,16 @@ priya.prototype.get = function (url, script){
                     if(typeof priya.debug !== 'undefined' && typeof run !== 'undefined' ){
                         priya.debug(xhttp.responseText);
                     } else {
-                        console.log(xhttp.responseText);
+                        priya.debug(xhttp.responseText);
                     }
                 }
             } else {
-                alert(url);
-                alert('error:' + xhttp.status);
+                priya.debug(url);
+                priya.debug('error:' + xhttp.status);
                 if(xhttp.responseText === ''){
-                    alert('empty response / response rejected.');
+                    priya.debug('empty response / response rejected.');
                 } else {
-                    alert('have responseText');
+                    priya.debug('have responseText');
                 }
             }
         }
