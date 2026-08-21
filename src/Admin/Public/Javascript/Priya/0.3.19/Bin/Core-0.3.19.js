@@ -1941,29 +1941,39 @@ _('prototype').dump = function () {
  * Exception.prototype.js
  */
 _('prototype').exception = function (data, except){
-    console.warn(data);
+    if(
+        !is.empty(data.class) &&
+        in_array(data.class, [
+            'Raxon\\Exception\\AuthorizationException',
+        ])
+    ){
+        console.warn('AuthorizationeException triggered');
+        return;
+    }
     if(
         !is.empty(data.class) &&
         (
             data.class.toLowerCase() === 'exception' ||
             data.class.toLowerCase() === 'errorexception' ||
             in_array(data.class, [
-                'R3m\\Io\\Exception\\LocateException',
-                'R3m\\Io\\Exception\\ObjectException',
-                'R3m\\Io\\Exception\\PluginNotFoundException',
-                'R3m\\Io\\Exception\\UrlEmptyException',
-                'R3m\\Io\\Exception\\UrlNotExistException',
-            ])
+                'Raxon\\Exception\\LocateException',
+                'Raxon\\Exception\\ObjectException',
+                'Raxon\\Exception\\PluginNotFoundException',
+                'Raxon\\Exception\\UrlEmptyException',
+                'Raxon\\Exception\\UrlNotExistException',
+
+
+        ])
         )
     ){
-        console.warn('exception triggered');
+        console.warn('AuthorizationeException triggered');
         this.debug(JSON.stringify(data, null, 2));
     }
     if(
         !is.empty(data.class) &&
         _('_').stristr(data.class, 'locateException') !== false
     ){
-        console.warn('exception triggered');
+        console.warn('AuthorizationeException triggered');
         this.debug(JSON.stringify(data, null, 2));
         if(data?.code === 1){
             console.warn('debug location information added...');
