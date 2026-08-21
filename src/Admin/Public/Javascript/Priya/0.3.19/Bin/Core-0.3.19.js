@@ -2987,7 +2987,7 @@ _('prototype').redirect = function (data){
         }
         var data = {"redirect": data};
     }        
-    window.location.href = data.redirect;
+    //window.location.href = data.redirect;
     return data;
 }
 
