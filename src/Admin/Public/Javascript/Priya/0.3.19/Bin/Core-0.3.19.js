@@ -1947,7 +1947,7 @@ _('prototype').exception = function (data, except){
             'Raxon\\Exception\\AuthorizationException',
         ])
     ){
-        console.warn('AuthorizationeException triggered');
+        alert('prototype.exception.authorization.yes');
         return;
     }
     if(
