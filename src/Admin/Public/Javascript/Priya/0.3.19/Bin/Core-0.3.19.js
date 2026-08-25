@@ -1947,7 +1947,6 @@ _('prototype').exception = function (data, except){
             'Raxon\\Exception\\AuthorizationException',
         ])
     ){
-        alert('prototype.exception.authorization.yes');
         return;
     }
     if(
@@ -2997,7 +2996,7 @@ _('prototype').redirect = function (data){
         }
         var data = {"redirect": data};
     }        
-    //window.location.href = data.redirect;
+    window.location.href = data.redirect;
     return data;
 }
 
