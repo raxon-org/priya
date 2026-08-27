@@ -2152,6 +2152,10 @@ _('prototype').header = function(attribute, value){
 
 priya.header = _('prototype').header;
 
+_('prototype').header_clear = function(){
+    priya.collection('request.header', []);
+}
+
 /**
  * Html.prototype.js
  */
@@ -3126,7 +3130,7 @@ _('prototype').request = function (url, data, script){
     const xhttp = new XMLHttpRequest();
     xhttp.priority = 'high';
     let header = priya.collection('request.header');
-    priya.collection('delete', 'request.header');
+    priya.collection('request.header', []);
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState === 4) {
             if(
