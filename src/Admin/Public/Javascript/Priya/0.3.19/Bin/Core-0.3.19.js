@@ -1942,7 +1942,7 @@ _('prototype').dump = function () {
  */
 _('prototype').exception = function (data, except){
     this.debug(JSON.stringify(data, null, 2));
-    let triggers = this.collection('debug.exception');
+    let triggers = this.collect?.debug?.exception ?? [];
     console.log(except);
     console.log(triggers);
     /*
