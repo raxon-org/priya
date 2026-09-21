@@ -1942,7 +1942,8 @@ _('prototype').dump = function () {
  */
 _('prototype').exception = function (data, except){
     this.debug(JSON.stringify(data, null, 2));
-    console.log(priya.collection());
+    let triggers = priya.collection('debug.exception');
+    console.log(triggers);
     /*
     if(
         !is.empty(data.class) &&
