@@ -1940,9 +1940,9 @@ _('prototype').exception_exclude = function (exclude) {
     let step = priya.collection('state.debug.step_exclude') ?? 1;
     console.log('step: ' + step);
     if(step === 1){
-        let exception_included = priya.collection('debug.exception.included') ?? [];
+        let exception_included = priya.collection('debug.exception') ?? [];
         console.log(exception_included);
-        priya.collection('state.debug.exception.included', exception_included);
+        priya.collection('state.debug.exception', exception_included);
         let index = 0;
         let exception_included_list = [];
         for (index = 0; index < exception_included.length; index++) {
@@ -1957,14 +1957,14 @@ _('prototype').exception_exclude = function (exclude) {
             exception_included_list.push(exception);
         }
         step++;
-        priya.collection('debug.exception.included', exception_included_list);
+        priya.collection('debug.exception', exception_included_list);
         priya.collection('state.debug.step_exclude', step);
     }
     else if(step === 2){
-        let exception_included = priya.collection('state.debug.exception.included') ?? [];
-        priya.collection('debug.exception.included', exception_included);
+        let exception = priya.collection('state.debug.exception') ?? [];
+        priya.collection('debug.exception', exception);
         priya.collection('delete', 'state.debug.step_exclude');
-        priya.collection('delete', 'state.debug.exception_included');
+        priya.collection('delete', 'state.debug.exception');
     }
 
 }
@@ -1974,21 +1974,17 @@ priya.exception_exclude = _('prototype').exception_exclude;
  * Exception.prototype.js
  */
 _('prototype').exception = function (data, except){
-    let included = priya.collection('debug.exception.included') ?? [];
-    let excluded = priya.collection('debug.exception.excluded') ?? [];
-    let is_execute = false;
+    let exception = priya.collection('debug.exception') ?? [];
     if(
         excluded.length > 0 &&
         data &&
         typeof data == 'object' &&
         !empty(data.class) &&
-        in_array(data.class, excluded, true)
+        in_array(data.class, exception, true)
     ){
-        //nothing
-    } else {
         this.debug(JSON.stringify(data, null, 2));
-        is_execute = true;
     }
+    /*
     if(
         is_execute === false &&
         included.length > 0 &&
@@ -1999,6 +1995,7 @@ _('prototype').exception = function (data, except){
     ){
         this.debug(JSON.stringify(data, null, 2));
     }
+     */
 }
 
 priya.exception = _('prototype').exception;
