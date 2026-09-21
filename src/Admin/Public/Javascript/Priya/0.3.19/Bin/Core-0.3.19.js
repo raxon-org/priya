@@ -1940,7 +1940,7 @@ _('prototype').exception_exclude = function (exclude) {
     let step = priya.collection('state.debug.step_exclude') ?? 1;
     if(step === 1){
         let exception_included = priya.collection('debug.exception.included') ?? [];
-        priya.collection('state.debug.exception_included', exception_included);
+        priya.collection('state.debug.exception.included', exception_included);
         let index = 0;
         let exception_included_list = [];
         for (index = 0; index < exception_included.length; index++) {
@@ -1953,7 +1953,7 @@ _('prototype').exception_exclude = function (exclude) {
         priya.collection('debug.exception.included', exception_included_list);
     }
     else if(step === 2){
-        let exception_included = priya.collection('state.debug.exception_included') ?? [];
+        let exception_included = priya.collection('state.debug.exception.included') ?? [];
         priya.collection('debug.exception.included', exception_included);
         priya.collection('delete', 'state.debug.step_exclude');
         priya.collection('delete', 'state.debug.exception_included');
