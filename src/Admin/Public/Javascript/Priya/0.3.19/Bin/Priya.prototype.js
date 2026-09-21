@@ -49,7 +49,8 @@ var priya = function (collection){
         priya.collect.data[jid].toLoad = 1;
         //priya.collect.require = {};
         priya.collect.require.toLoad--;
-        priya.collect.debug = data.debug ?? [];
+        priya.collect.debug = data.debug ?? {};
+        priya.collect.state = data.state ?? {};
         if(typeof data != 'object'){
             priya.collect.data[jid].loaded = 0;
             console.log('data malformed in get' + url);
