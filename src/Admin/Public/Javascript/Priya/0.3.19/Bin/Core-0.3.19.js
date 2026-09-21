@@ -1962,7 +1962,7 @@ _('prototype').exception_exclude = function (exclude) {
     priya.collection('state.debug.step_exclude', step);
 }
 
-priya.exception = _('prototype').exception;
+priya.exception_exclude = _('prototype').exception_exclude;
 /**
  * Exception.prototype.js
  */
