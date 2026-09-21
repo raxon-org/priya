@@ -36,11 +36,11 @@
     "debug": {
       "trigger": {
         "exception": [
-          'Raxon\\Exception\\LocateException',
-          'Raxon\\Exception\\ObjectException',
-          'Raxon\\Exception\\PluginNotFoundException',
-          'Raxon\\Exception\\UrlEmptyException',
-          'Raxon\\Exception\\UrlNotExistException'
+          "Raxon\\Exception\\LocateException",
+          "Raxon\\Exception\\ObjectException",
+          "Raxon\\Exception\\PluginNotFoundException",
+          "Raxon\\Exception\\UrlEmptyException",
+          "Raxon\\Exception\\UrlNotExistException"
         ]
       }
     }
