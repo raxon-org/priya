@@ -1943,10 +1943,27 @@ _('prototype').dump = function () {
 _('prototype').exception = function (data, except){
     let included = priya.collection('debug.exception.included') ?? [];
     let excluded = priya.collection('debug.exception.excluded') ?? [];
-    if(data && typeof data == 'object' && !in_array(data.class, excluded, true)){
+    let is_execute = false;
+    if(
+        excluded.length > 0 &&
+        data &&
+        typeof data == 'object' &&
+        !empty(data.class) &&
+        in_array(data.class, excluded, true)
+    ){
+        //nothing
+    } else {
         this.debug(JSON.stringify(data, null, 2));
+        is_execute = true;
     }
-    else if(data && typeof data == 'object' && in_array(data.class, included, true)){
+    if(
+        is_execute === false &&
+        included.length > 0 &&
+        data &&
+        typeof data == 'object' &&
+        !empty(data.class) &&
+        in_array(data.class, included, true)
+    ){
         this.debug(JSON.stringify(data, null, 2));
     }
 }
