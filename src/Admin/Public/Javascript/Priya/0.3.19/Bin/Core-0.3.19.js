@@ -1941,6 +1941,9 @@ _('prototype').dump = function () {
  * Exception.prototype.js
  */
 _('prototype').exception = function (data, except){
+    this.debug(JSON.stringify(data, null, 2));
+    console.log(priya.collection());
+    /*
     if(
         !is.empty(data.class) &&
         in_array(data.class, [
@@ -1965,19 +1968,9 @@ _('prototype').exception = function (data, except){
         ])
         )
     ){
-        console.warn('AuthorizationeException triggered');
         this.debug(JSON.stringify(data, null, 2));
     }
-    if(
-        !is.empty(data.class) &&
-        _('_').stristr(data.class, 'locateException') !== false
-    ){
-        console.warn('AuthorizationeException triggered');
-        this.debug(JSON.stringify(data, null, 2));
-        if(data?.code === 1){
-            console.warn('debug location information added...');
-        }
-    }
+     */
 }
 
 priya.exception = _('prototype').exception;
