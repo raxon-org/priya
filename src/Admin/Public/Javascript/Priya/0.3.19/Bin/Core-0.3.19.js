@@ -1957,6 +1957,7 @@ _('prototype').exception_exclude = function (exclude) {
         priya.collection('debug.exception.included', exception_included);
         priya.collection('delete', 'state.debug.step_exclude');
         priya.collection('delete', 'state.debug.exception_included');
+        step = 0;
     }
     step++
     priya.collection('state.debug.step_exclude', step);
