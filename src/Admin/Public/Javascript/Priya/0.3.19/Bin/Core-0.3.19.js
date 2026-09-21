@@ -1936,31 +1936,33 @@ _('prototype').dump = function () {
     return output
   }
 
-    _('prototype').exception_exclude = function (exclude) {
-        let step = priya.collection('state.debug.step_exclude') ?? 1;
-        if(step === 1){
-            let exception_included = priya.collection('debug.exception.included');
-            priya.collection('state.debug.exception_included', exception_included);
-            let index = 0;
-            let exception_included_list;
-            for (index = 0; index < exception_included.length; index++) {
-                let exception = exception_included[index];
-                if (in_array(exception, exclude, true)) {
-                    continue;
-                }
-                exception_included_list.push(exception);
+_('prototype').exception_exclude = function (exclude) {
+    let step = priya.collection('state.debug.step_exclude') ?? 1;
+    if(step === 1){
+        let exception_included = priya.collection('debug.exception.included') ?? [];
+        priya.collection('state.debug.exception_included', exception_included);
+        let index = 0;
+        let exception_included_list = [];
+        for (index = 0; index < exception_included.length; index++) {
+            let exception = exception_included[index];
+            if (in_array(exception, exclude, true)) {
+                continue;
             }
-            priya.collection('debug.exception.included', exception_included_list);
+            exception_included_list.push(exception);
         }
-        else if(step === 2){
-            let exception_included = priya.collection('state.debug.exception_included');
-            priya.collection('debug.exception.included', exception_included);
-            priya.collection('delete', 'state.debug.step_exclude');
-            priya.collection('delete', 'state.debug.exception_included');
-        }
-        step++
-        priya.collection('state.debug.step_exclude', step);
+        priya.collection('debug.exception.included', exception_included_list);
     }
+    else if(step === 2){
+        let exception_included = priya.collection('state.debug.exception_included') ?? [];
+        priya.collection('debug.exception.included', exception_included);
+        priya.collection('delete', 'state.debug.step_exclude');
+        priya.collection('delete', 'state.debug.exception_included');
+    }
+    step++
+    priya.collection('state.debug.step_exclude', step);
+}
+
+priya.exception = _('prototype').exception;
 /**
  * Exception.prototype.js
  */
