@@ -34,12 +34,14 @@
     },
     "query": "0.3.19",
     "debug": {
-      "exception": [
-        "Raxon\\Exception\\LocateException",
-        "Raxon\\Exception\\ObjectException",
-        "Raxon\\Exception\\PluginNotFoundException",
-        "Raxon\\Exception\\UrlEmptyException",
-        "Raxon\\Exception\\UrlNotExistException"
-      ]
+      "exception": {
+        "included": [
+          "Raxon\\Exception\\LocateException",
+          "Raxon\\Exception\\ObjectException",
+          "Raxon\\Exception\\PluginNotFoundException",
+          "Raxon\\Exception\\UrlEmptyException",
+          "Raxon\\Exception\\UrlNotExistException"
+        ]
+      }
     }
 }

@@ -1941,37 +1941,14 @@ _('prototype').dump = function () {
  * Exception.prototype.js
  */
 _('prototype').exception = function (data, except){
-    this.debug(JSON.stringify(data, null, 2));
-    let triggers = priya.collect;
-    console.log(triggers);
-    /*
-    if(
-        !is.empty(data.class) &&
-        in_array(data.class, [
-            'Raxon\\Exception\\AuthorizationException',
-        ])
-    ){
-        return;
-    }
-    if(
-        !is.empty(data.class) &&
-        (
-            data.class.toLowerCase() === 'exception' ||
-            data.class.toLowerCase() === 'errorexception' ||
-            in_array(data.class, [
-                'Raxon\\Exception\\LocateException',
-                'Raxon\\Exception\\ObjectException',
-                'Raxon\\Exception\\PluginNotFoundException',
-                'Raxon\\Exception\\UrlEmptyException',
-                'Raxon\\Exception\\UrlNotExistException',
-
-
-        ])
-        )
-    ){
+    let included = priya.collection('debug.exception.included') ?? [];
+    let excluded = priya.collection('debug.exception.excluded') ?? [];
+    if(data && typeof data == 'object' && !in_array(data.class, excluded, true)){
         this.debug(JSON.stringify(data, null, 2));
     }
-     */
+    else if(data && typeof data == 'object' && in_array(data.class, included, true)){
+        this.debug(JSON.stringify(data, null, 2));
+    }
 }
 
 priya.exception = _('prototype').exception;
