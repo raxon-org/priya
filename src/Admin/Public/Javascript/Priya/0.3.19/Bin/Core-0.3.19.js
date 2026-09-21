@@ -1942,7 +1942,7 @@ _('prototype').dump = function () {
  */
 _('prototype').exception = function (data, except){
     this.debug(JSON.stringify(data, null, 2));
-    let triggers = this.collect;
+    let triggers = priya.collect;
     console.log(triggers);
     /*
     if(
