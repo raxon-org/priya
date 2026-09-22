@@ -1934,51 +1934,6 @@ _('prototype').dump = function () {
     }
     // Not how PHP does it, but helps us test:
     return output
-  }
-
-  /*
-_('prototype').debug_exception = function (include) {
-    let exception_list = priya.collection('debug.exception') ?? [];
-    for(let i = 0; i < include.length; i++){
-        if(!in_array(include[i], exception_list)){
-            exception_list.push(include[i]);
-        }
-    }
-    priya.collection('debug.exception', exception_list);
-}
-   */
-
-_('prototype').exception_exclude = function (exclude) {
-    let step = priya.collection('state.debug.step_exclude') ?? 1;
-    console.log('step: ' + step);
-    if(step === 1){
-        let exception_included = priya.collection('debug.exception') ?? [];
-        console.log(exception_included);
-        priya.collection('state.debug.exception', exception_included);
-        let index = 0;
-        let exception_included_list = [];
-        for (index = 0; index < exception_included.length; index++) {
-            let exception = exception_included[index];
-            if (
-                exclude !== null &&
-                is.array(exclude) &&
-                in_array(exception, exclude, true)
-            ) {
-                continue;
-            }
-            exception_included_list.push(exception);
-        }
-        step++;
-        priya.collection('debug.exception', exception_included_list);
-        priya.collection('state.debug.step_exclude', step);
-    }
-    else if(step === 2){
-        let exception = priya.collection('state.debug.exception') ?? [];
-        priya.collection('debug.exception', exception);
-        priya.collection('delete', 'state.debug.step_exclude');
-        priya.collection('delete', 'state.debug.exception');
-    }
-
 }
 
 priya.exception_exclude = _('prototype').exception_exclude;
@@ -1991,7 +1946,7 @@ _('prototype').exception = function (data, except){
         exception.length > 0 &&
         data &&
         typeof data == 'object' &&
-        !empty(data.class) &&
+        !is.empty(data.class) &&
         in_array(data.class, exception, true)
     ){
         this.debug(JSON.stringify(data, null, 2));
