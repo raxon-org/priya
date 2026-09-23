@@ -210,7 +210,7 @@ priya.calculate = _('prototype').calculate;
 /**
  * Children.prototype.js
  */
-_('prototype').children = function (index){
+_('prototype').childrenWithIndex = function (index){
     var children;
     if(typeof index == 'undefined'){
         children = this.childNodes;
@@ -237,7 +237,7 @@ _('prototype').children = function (index){
     return false;
 }
 
-priya.children = _('prototype').children;
+priyachildrenWithIndex = _('prototype').childrenWithIndex;
 
 /**
  * Class.prototype.js
@@ -2055,7 +2055,7 @@ priya.init = function (data, configuration){
         var element = this.select(data);
         return element;
     }
-    return data;     
+    return data;
 }
 
 /**
@@ -2916,7 +2916,7 @@ priya.on = _('prototype').on;
  * Prepend.prototype.js
  */
 _('prototype').prepend = function(node){
-    this.insertBefore(node, this.children('first'));
+    this.insertBefore(node, this.childrenWithIndex('first'));
     return this;
 }
 
