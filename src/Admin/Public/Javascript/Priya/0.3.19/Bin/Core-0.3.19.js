@@ -2916,7 +2916,7 @@ priya.on = _('prototype').on;
  * Prepend.prototype.js
  */
 _('prototype').prepend = function(node){
-    this.insertBefore(node, this.childrenWithIndex('first'));
+    this.insertBefore(node, _('prototype').childrenWithIndex('first'));
     return this;
 }
 
