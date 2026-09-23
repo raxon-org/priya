@@ -2047,7 +2047,7 @@ priya.explode = _('prototype').explode;
  */
 priya.init = function (data, configuration){
     console.warn('deprecated, use select or run');
-    /*
+
     if(typeof data == 'undefined'){
         return this;
     }
@@ -2055,8 +2055,7 @@ priya.init = function (data, configuration){
         var element = this.select(data);
         return element;
     }
-    return data;
-     */
+    return data;     
 }
 
 /**
