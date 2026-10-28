@@ -3117,16 +3117,11 @@ _('prototype').request = function (url, data, script){
     priya.collection('request.header', []);
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState === 4) {
-            console.log(xhttp.responseText.substr(0, 1));
-            console.log(xhttp.responseText.substr(-1));
             if(
                 xhttp.responseText.substr(0, 1) === '{' &&
-                xhttp.responseText.substr(-1) === '}' &&
-                xhttp.responseText.substr(0, 2) !== '{{' &&
-                xhttp.responseText.substr(-2) !== '}}'
+                xhttp.responseText.substr(-1) === '}'
             ){
                 const data = JSON.parse(xhttp.responseText);
-                console.log(data);
                 if(_('prototype').is_empty(data.trace)){
                     priya.link(data);
                     priya.styler(data);
@@ -3144,7 +3139,10 @@ _('prototype').request = function (url, data, script){
                 }
                 return;
             }
-            if(xhttp.responseText.substr(0, 1) === '[' && xhttp.responseText.substr(-1) === ']'){
+            if(
+                xhttp.responseText.substr(0, 1) === '[' &&
+                xhttp.responseText.substr(-1) === ']'
+            ){
                 const data = JSON.parse(xhttp.responseText);
                 if(typeof script == 'function'){
                     script(url, data);
