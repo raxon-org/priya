@@ -3126,6 +3126,7 @@ _('prototype').request = function (url, data, script){
                 xhttp.responseText.substr(-2) !== '}}'
             ){
                 const data = JSON.parse(xhttp.responseText);
+                console.log(data);
                 if(_('prototype').is_empty(data.trace)){
                     priya.link(data);
                     priya.styler(data);
