@@ -3117,6 +3117,8 @@ _('prototype').request = function (url, data, script){
     priya.collection('request.header', []);
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState === 4) {
+            console.log(xhttp.responseText.substr(0, 1));
+            console.log(xhttp.responseText.substr(-1));
             if(
                 xhttp.responseText.substr(0, 1) === '{' &&
                 xhttp.responseText.substr(-1) === '}' &&
